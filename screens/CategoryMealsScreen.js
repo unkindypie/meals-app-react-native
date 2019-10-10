@@ -8,14 +8,17 @@ import {
 
 import { CATEGORIES, MEALS } from '../data/dummy-data';
 import { FlatList } from 'react-native-gesture-handler';
+import MealItem from '../components/MealItem';
 
 const CategoryMealsScreen = props => {
     const renderMealItem = (itemData) => {
-        return (
-            <View>
-                <Text>{itemData.item.title}</Text>
-            </View>
-        );
+        return <MealItem 
+        // title={itemData.item.title}
+        // duration = {itemData.item.duration} 
+        {...itemData.item}
+        onSelectMeal={()=>{
+
+        }}/>
     };
 
 
@@ -29,7 +32,8 @@ const CategoryMealsScreen = props => {
             <FlatList
                 data={displayedMeals}
                 keyExtractor={(item) => item.id}
-                renderItem={renderMealItem} />
+                renderItem={renderMealItem}
+                style={{width: '80%'}} />
         </View>
     );
 };
