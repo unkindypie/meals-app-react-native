@@ -30,9 +30,10 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 15,
         height: 150,
-        //прячу эффект нажатия, переходящий за границы скругленных углов
         borderRadius: 10,
-        overflow: 'hidden'
+        //прячу эффект нажатия, переходящий за границы скругленных углов на андроид
+        overflow: Platform.OS ==='android' &&  Platform.Version >= 21 ? 'hidden' : 'visible',
+        elevation: 5, //из-за overflow: hidden на андроиде оно будет перекрывать тень, так что тень должна быть в перен контейнере
     },
     container: {
         flex: 1,
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
         shadowOpacity: .26,
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 10,
-        elevation: 5,
+        
         padding: 15,
         justifyContent: 'flex-end',
         alignItems: 'flex-end'
